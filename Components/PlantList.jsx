@@ -59,7 +59,7 @@ const PlantsList = () => {
       <div className='grid grid-cols-4 gap-4 mx-10 mt-10'>
         {nextEightPlants.map(plant => (
           <div key={plant.id} className='border p-4 rounded-lg shadow-md'>
-            <img src={plant.default_image?.medium_url} alt={plant.common_name} className='w-full h-48 object-cover mb-4' />
+            <img src={plant.default_image?.medium_url} alt={plant.common_name} className='w-full rounded-lg h-48 object-cover mb-4' />
             <h3 className='text-lg font-semibold text-slate-800'>{plant.common_name || "No Common Name"}</h3>
             <p><strong>Scientific Name:</strong> {plant.scientific_name}</p>
             <p><strong>Family:</strong> {plant.family}</p>
