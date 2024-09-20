@@ -10,13 +10,14 @@ import Blog from '../Components/Blog';
 import ShopByCategory from '../Components/Home Page/ShopByCategory';
 import Feedback from '../Components/Home Page/Feedback';
 import PlantsList from '../Components/PlantList';
+import Products from '../Components/Products';
 
 function App() {
   return (
     <Router>
       <Header />
       <Routes>
-        <Route path="/" element={<><Body /> <PlantsList /> <ShopByCategory /> <Feedback /> </>} />
+        <Route path="/" element={<><Body /> <PlantsList /> <ShopByCategory /> <Feedback /> <Products /> </>} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/about" element={<About />} />
         <Route path="/faq" element={<Faq />} />

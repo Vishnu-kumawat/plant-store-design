@@ -24,20 +24,20 @@ const PlantsList = () => {
     fetchPlants();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (loading) return <div className="text-center mt-10">Loading...</div>;
+  if (error) return <div className="text-center text-red-500 mt-10">{error}</div>;
 
   // Limit the displayed items to 4
   const firstFourPlants = plants.slice(0, 4);
   const nextEightPlants = plants.slice(4, 12);
 
   return (
-    <div>
-      <div className='flex overflow-x-auto space-x-4 mx-20 mt-10 mb-16 justify-evenly'>
+    <div className="max-w-screen-xl mx-auto px-4">
+      <div className="flex overflow-x-auto space-x-4 mt-10 mb-16 justify-center">
         {firstFourPlants.map(plant => (
-          <div key={plant.id} className='flex-none w-64 border p-4 rounded-lg shadow-md mb-5'>
-            <img src={plant.default_image?.medium_url} alt={plant.common_name} className='w-full h-48 object-cover mb-4' />
-            <h3 className='text-lg font-semibold text-slate-800'>{plant.common_name || "No Common Name"}</h3>
+          <div key={plant.id} className="flex-none w-64 border p-4 rounded-lg shadow-md mb-5">
+            <img src={plant.default_image?.medium_url} alt={plant.common_name} className="w-full h-48 object-cover mb-4 rounded-md" />
+            <h3 className="text-lg font-semibold text-slate-800">{plant.common_name || "No Common Name"}</h3>
             <p><strong>Scientific Name:</strong> {plant.scientific_name}</p>
             <p><strong>Family:</strong> {plant.family}</p>
             <p><strong>Cycle:</strong> {plant.cycle}</p>
@@ -45,30 +45,33 @@ const PlantsList = () => {
         ))}
       </div>
 
-      <div className='text-center'>
-        <p className='text-4xl font-semibold'>Featured Products</p>
-        <p className='text-gray-500 mt-4'>Discover our Top Trees, chosen for their beauty and resiliance. Add color, fruit, or greenery to</p>
-        <p className='text-gray-500'>your garden with these customer favourites. bring nature's charm home today.</p>
-        <div className='mt-5'>
-          <span className='text-xl font-semibold'> All Plants </span>
-          <span className='text-xl text-gray-500'>| New Arrivals | </span>
-          <span className='text-xl text-gray-500'>Sale</span>
+      <div className="text-center">
+        <p className="text-4xl font-semibold">Featured Products</p>
+        <p className="text-gray-500 mt-4">Discover our Top Trees, chosen for their beauty and resilience. Add color, fruit, or greenery to</p>
+        <p className="text-gray-500">your garden with these customer favourites. Bring nature's charm home today.</p>
+        <div className="mt-5">
+          <span className="text-xl font-semibold"> All Plants </span>
+          <span className="text-xl text-gray-500">| New Arrivals | </span>
+          <span className="text-xl text-gray-500">Sale</span>
         </div>
       </div>
 
-      <div className='grid grid-cols-4 gap-4 mx-10 mt-10'>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10">
         {nextEightPlants.map(plant => (
-          <div key={plant.id} className='border p-4 rounded-lg shadow-md'>
-            <img src={plant.default_image?.medium_url} alt={plant.common_name} className='w-full rounded-lg h-48 object-cover mb-4' />
-            <h3 className='text-lg font-semibold text-slate-800'>{plant.common_name || "No Common Name"}</h3>
+          <div key={plant.id} className="border p-4 rounded-lg shadow-md">
+            <img src={plant.default_image?.medium_url} alt={plant.common_name} className="w-full rounded-lg h-48 object-cover mb-4" />
+            <h3 className="text-lg font-semibold text-slate-800">{plant.common_name || "No Common Name"}</h3>
             <p><strong>Scientific Name:</strong> {plant.scientific_name}</p>
             <p><strong>Family:</strong> {plant.family}</p>
             <p><strong>Cycle:</strong> {plant.cycle}</p>
           </div>
         ))}
       </div>
-      <div className=' flex justify-center mt-10'>
-        <button className='bg-green-500 text-white px-5 py-2 rounded-xl flex text-lg font-mono'> View All <ArrowRight className='ml-3' /> </button>
+      <div className="flex justify-center mt-10">
+        <button className="bg-green-500 text-white px-5 py-2 rounded-xl flex items-center text-lg font-mono">
+          View All
+          <ArrowRight className="ml-3" />
+        </button>
       </div>
     </div>
   );

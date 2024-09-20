@@ -16,7 +16,7 @@ const Shop = () => {
           throw new Error('Failed to fetch data');
         }
         const data = await response.json();
-        setPlants(data.data); // Assuming 'data' contains the array of plants
+        setPlants(data.data);
       } catch (err) {
         setError(err.message);
       }
@@ -25,7 +25,7 @@ const Shop = () => {
     fetchPlants();
   }, []);
 
-  // Function to generate a random price between 10 and 100
+  // Generate a random price between 10 and 100
   const generateRandomPrice = () => {
     return (Math.random() * (100 - 10) + 10).toFixed(2);
   };
@@ -43,36 +43,33 @@ const Shop = () => {
   };
 
   return (
-    <div>
-      <div className="flex justify-around bg-green-50">
-        <div>
-          <img
-            className="w-96 mix-blend-multiply"
-            src="https://img.freepik.com/free-vector/realistic-green-leaves-background_52683-89787.jpg?t=st=1726550422~exp=1726554022~hmac=28f7b8ef1d163d75376560488269d8dbbd14429427d95a2a3de0de347b880a62&w=1060"
-            alt="Green Leaves Background"
-          />
-        </div>
+    <div className="p-4 md:px-10 lg:px-20">
+      {/* Header Section */}
+      <div className="flex justify-around bg-green-50 py-4">
+        <img
+          className="w-1/3 md:w-96 mix-blend-multiply"
+          src="https://img.freepik.com/free-vector/realistic-green-leaves-background_52683-89787.jpg?t=st=1726550422~exp=1726554022~hmac=28f7b8ef1d163d75376560488269d8dbbd14429427d95a2a3de0de347b880a62&w=1060"
+          alt="Green Leaves Background"
+        />
         <div className="flex items-center">
-          <p className="text-5xl text-center font-semibold">Shop</p>
+          <p className="text-3xl md:text-5xl text-center font-semibold">Shop</p>
         </div>
-        <div>
-          <img
-            className="w-96 mix-blend-multiply"
-            src="https://img.freepik.com/premium-photo/green-succulent-plant-closeup_1282444-14752.jpg?uid=R119575077&ga=GA1.1.816295967.1700043709&semt=ais_hybrid"
-            alt="Green Succulent Plant"
-          />
-        </div>
+        <img
+          className="w-1/3 md:w-96 mix-blend-multiply"
+          src="https://img.freepik.com/premium-photo/green-succulent-plant-closeup_1282444-14752.jpg?uid=R119575077&ga=GA1.1.816295967.1700043709&semt=ais_hybrid"
+          alt="Green Succulent Plant"
+        />
       </div>
 
-      <div className="flex mt-20 mx-20">
-        <div className="border flex items-center rounded-3xl justify-between w-[500px] py-3 text-2xl font-semibold">
-          <p className="ml-5 items-center">Filters</p>
+      {/* Filters and Categories */}
+      <div className="flex flex-col md:flex-row mt-10 mx-4 md:mx-20">
+        <div className="border flex items-center rounded-3xl justify-between w-full md:w-[500px] py-3 text-lg md:text-2xl font-semibold mb-4 md:mb-0">
+          <p className="ml-5">Filters</p>
           <p className="mr-5 bg-gray-100 rounded-xl py-1 px-2">
             <ArrowLeftFromLine />
           </p>
         </div>
-
-        <div className="flex justify-around py-1 px-2 items-center border rounded-3xl w-full ml-8 mr-20">
+        <div className="flex flex-wrap justify-around py-2 items-center border rounded-3xl w-full md:ml-8 md:mr-20">
           <p className="font-semibold">All</p>
           <p className="text-gray-500 font-semibold">House Plants</p>
           <p className="text-gray-500 font-semibold">Potter Plants</p>
@@ -83,9 +80,10 @@ const Shop = () => {
         </div>
       </div>
 
-      <div className="flex mx-20 mt-10">
-        <div className="w-[335px] border rounded-xl">
-          <div className="relative flex items-center mx-5 mt-5">
+      <div className="flex flex-col md:flex-row mx-4 md:mx-20 mt-10 gap-10">
+        {/* Sidebar */}
+        <div className="w-full md:w-[335px] border rounded-xl p-4">
+          <div className="relative flex items-center mb-5">
             <input
               type="text"
               placeholder="Search"
@@ -94,107 +92,98 @@ const Shop = () => {
             <Search className="absolute left-3 text-gray-500" />
           </div>
 
-          <div className="bg-gray-100 p-4 mt-5 mx-5 rounded-xl">
-            <p className="mx-2 text-2xl font-semibold mb-2 px-2 border-gray-300 pb-3 border-b">Price Range</p>
-            <div className="flex items-center">
-              <input
-                type="range"
-                min={1000}
-                max={4500}
-                value={price}
-                onChange={handlePriceChange}
-                className="w-full text-green-700 slider mt-4"
-              />
-            </div>
+          <div className="bg-gray-100 p-4 rounded-xl">
+            <p className="text-xl md:text-2xl font-semibold mb-2 pb-3 border-b">Price Range</p>
+            <input
+              type="range"
+              min={1000}
+              max={4500}
+              value={price}
+              onChange={handlePriceChange}
+              className="w-full mt-4"
+            />
             <div className="flex justify-between mt-4 text-gray-500">
-              <span className='bg-white px-2 py-1 rounded-xl'>${price}</span> {/* Show current price value */}
-              <span className='bg-white px-2 py-1 rounded-xl'>$45,00</span>
+              <span className='bg-white px-2 py-1 rounded-xl'>${price}</span>
+              <span className='bg-white px-2 py-1 rounded-xl'>$4500</span>
             </div>
           </div>
 
           {/* Availability Section */}
-          <div className="mx-5 mt-5 bg-gray-100 rounded-xl">
-            <div className="">
-              <div className="flex border-b border-gray-300 mx-4 items-center justify-between px-2 py-3 cursor-pointer" onClick={toggleAvailability}>
-                <p className="text-2xl font-semibold">Availability</p>
-                {isAvailabilityOpen ? <ChevronUp /> : <ChevronDown />}
-              </div>
-              {isAvailabilityOpen && (
-                <div className="p-4">
-                  <div className="flex items-center mb-2">
-                    <input type="checkbox" id="inStock" className="mr-2" />
-                    <label htmlFor="inStock">In Stock</label>
-                  </div>
-                  <div className="flex items-center mb-2">
-                    <input type="checkbox" id="perOrder" className="mr-2" />
-                    <label htmlFor="perOrder">Per Order</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" id="upcoming" className="mr-2" />
-                    <label htmlFor="upcoming">Upcoming</label>
-                  </div>
-                </div>
-              )}
+          <div className="bg-gray-100 rounded-xl mt-5">
+            <div className="border-b p-3 cursor-pointer flex justify-between items-center" onClick={toggleAvailability}>
+              <p className="text-xl md:text-2xl font-semibold">Availability</p>
+              {isAvailabilityOpen ? <ChevronUp /> : <ChevronDown />}
             </div>
+            {isAvailabilityOpen && (
+              <div className="p-4">
+                <div className="flex items-center mb-2">
+                  <input type="checkbox" id="inStock" className="mr-2" />
+                  <label htmlFor="inStock">In Stock</label>
+                </div>
+                <div className="flex items-center mb-2">
+                  <input type="checkbox" id="perOrder" className="mr-2" />
+                  <label htmlFor="perOrder">Per Order</label>
+                </div>
+                <div className="flex items-center">
+                  <input type="checkbox" id="upcoming" className="mr-2" />
+                  <label htmlFor="upcoming">Upcoming</label>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Categories Section */}
-          <div className="mx-5 my-5 bg-gray-100 rounded-xl">
-            <div className="">
-              <div className="flex items-center border-b border-gray-300 mx-4 justify-between px-2 py-3 cursor-pointer" onClick={toggleCategories}>
-                <p className="text-2xl font-semibold">Categories</p>
-                {isCategoriesOpen ? <ChevronUp /> : <ChevronDown />}
-              </div>
-              {isCategoriesOpen && (
-                <div className="p-4">
-                  <div className="flex items-center mb-2">
-                    <input type="checkbox" id="all" className="mr-2" />
-                    <label htmlFor="all">All</label>
-                  </div>
-                  <div className="flex items-center mb-2">
-                    <input type="checkbox" id="outdoor" className="mr-2" />
-                    <label htmlFor="outdoor">Outdoor</label>
-                  </div>
-                  <div className="flex items-center mb-2">
-                    <input type="checkbox" id="indoor" className="mr-2" />
-                    <label htmlFor="indoor">Indoor</label>
-                  </div>
-                  <div className="flex items-center mb-2">
-                    <input type="checkbox" id="terraceBalcony" className="mr-2" />
-                    <label htmlFor="terraceBalcony">Terrace & Balcony</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" id="officeDesk" className="mr-2" />
-                    <label htmlFor="officeDesk">Office Desk</label>
-                  </div>
-                </div>
-              )}
+          <div className="bg-gray-100 rounded-xl mt-5">
+            <div className="border-b p-3 cursor-pointer flex justify-between items-center" onClick={toggleCategories}>
+              <p className="text-xl md:text-2xl font-semibold">Categories</p>
+              {isCategoriesOpen ? <ChevronUp /> : <ChevronDown />}
             </div>
+            {isCategoriesOpen && (
+              <div className="p-4">
+                <div className="flex items-center mb-2">
+                  <input type="checkbox" id="all" className="mr-2" />
+                  <label htmlFor="all">All</label>
+                </div>
+                <div className="flex items-center mb-2">
+                  <input type="checkbox" id="outdoor" className="mr-2" />
+                  <label htmlFor="outdoor">Outdoor</label>
+                </div>
+                <div className="flex items-center mb-2">
+                  <input type="checkbox" id="indoor" className="mr-2" />
+                  <label htmlFor="indoor">Indoor</label>
+                </div>
+                <div className="flex items-center mb-2">
+                  <input type="checkbox" id="terraceBalcony" className="mr-2" />
+                  <label htmlFor="terraceBalcony">Terrace & Balcony</label>
+                </div>
+                <div className="flex items-center">
+                  <input type="checkbox" id="officeDesk" className="mr-2" />
+                  <label htmlFor="officeDesk">Office Desk</label>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
-        <div className="p-4">
-
+        {/* Plants Grid */}
+        <div className="flex-1">
           {error ? (
-            <p className="text-red-500">Error: {error}</p>
+            <p className="text-red-500 text-center">{error}</p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {plants.map((plant) => (
-                <div key={plant.id} className="bg-white shadow-md rounded-lg p-4">
+                <div key={plant.id} className="border rounded-xl p-4">
                   <img
-                    src={plant.default_image?.thumbnail || 'https://via.placeholder.com/150'}
-                    alt={plant.common_name || 'No name available'}
-                    className="w-full h-48 object-cover rounded-md"
+                    src={plant.default_image?.small_url}
+                    alt={plant.common_name || 'Unknown Plant'}
+                    className="h-40 w-full object-cover rounded-t-xl"
                   />
-                  <h2 className="mt-2 text-lg font-semibold text-center">{plant.common_name || 'Unnamed Plant'}</h2>
-                  <p className="text-gray-700 text-center font-bold">${generateRandomPrice()}</p>
+                  <h3 className="text-lg font-semibold mt-4">{plant.common_name || 'Unknown Plant'}</h3>
+                  <p className="text-gray-500 mt-2">${generateRandomPrice()}</p>
                 </div>
               ))}
             </div>
           )}
-        </div>
-
-        <div>
         </div>
       </div>
     </div>
